@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[10]:
+# In[1]:
 
 
 import pandas as pd
@@ -14,22 +14,25 @@ file_df = pd.read_csv(file)
 file_df.head()
 
 
-# In[12]:
+# In[2]:
 
 
 months = file_df['Date'].count()
 total = file_df['Profit/Losses'].sum()
 change = file_df['Profit/Losses'].pct_change()
+greatest = file_df['Profit/Losses'].max()
+least = file_df['Profit/Losses'].min()
 
 
-# In[13]:
+# In[3]:
 
 
 print('Financial Analysis')
 print('--------------------------')
 print(f"Total Months: {months}")
 print(f"Total: ${total}")
-print(f"Average Change: {change}")
+print(f"Greatest Increase in Profits: {greatest}")
+print(f"Greatest Decrease in Profits: {least}")
 
 
 # In[ ]:
