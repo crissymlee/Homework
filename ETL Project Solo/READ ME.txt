@@ -1,0 +1,24 @@
+Project ETL - Solo
+Project Plan: 
+Data sets on dating app downloads vs reported violent sexual asaults on college campuses.
+
+
+
+Data Sets:
+1. App Data 2017 - https://www.kaggle.com/ramamet4/app-store-apple-data-set-10k-apps
+2. App Data 2018 - https://www.kaggle.com/madhav000/playstore-analysis
+3. App Data 2019 - https://www.kaggle.com/lava18/google-play-store-apps
+4. App Data 2020 - a. https://www.kaggle.com/kboghe/android-apps-metadata
+		   b. https://www.kaggle.com/tungmphung/new-google-play-store-android-apps-dataset
+5. Reported College Violent Sexual Asaults - https://nces.ed.gov/programs/crimeindicators/
+
+
+Cleaning:
+I cleaned the data using python. Dropped the duplicate cells, deleted the columns I did not need and then loaded them into pgyAdmin.
+In pgAdmin I did a left join on the tables and then pulled the data back into python.
+
+													
+
+
+
+
