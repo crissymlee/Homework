@@ -24,10 +24,10 @@ def welcome():
     return (
         "Welcome to the Hawaii Climate Analysis API!<br/>"
         "Available Routes:<br/>"
-        f"/api/v1.0/precipitation<br/>"
-        f"/api/v1.0/stations<br/>"
-        f"/api/v1.0/tobs<br/>"
-        f"/api/v1.0/temp/start/end"
+        "/api/v1.0/precipitation<br/>"
+        "/api/v1.0/stations<br/>"
+        "/api/v1.0/tobs<br/>"
+        "/api/v1.0/temp/start/end"
     )
 
 
@@ -58,6 +58,30 @@ def stations():
         stations_list.append(station_dict)
 
     return jsonify(stations_list)
+
+
+@app.route("/api/v1.0/tobs")
+def tobs():
+    prev_year = dt.date(2017, 8, 23) - dt.timedelta(days=365)
+
+   final_date = session.query(Measurement.date).all().\
+      filter(Measurement.date >= prev_year)
+
+    begin_date = max_date - dt.timedelta(days=365)
+    results = session.query(Measurement).\
+        filter (Measurement.date >= begin_date).all() ##I know this is wrong
+    
+    tobs_list = []
+    for result in results:
+        tobs_dict = {}
+        tobs_dict["date"] = result.date
+        tobs_dict["station"] = result.station
+        tobs_dict["tobs"] = result.tobs
+        tobs_list.append(tobs_dict)
+
+    return jsonify(tobs_list)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
