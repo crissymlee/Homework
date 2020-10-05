@@ -33,7 +33,11 @@ def welcome():
 
 @app.route("/api/v1.0/precipitation")
 def precipitation():
+    session = Session(engine)
+
     prev_year = dt.date(2017, 8, 23) - dt.timedelta(days=365)
+
+    session.close()
 
     precipitation = session.query(Measurement.date, Measurement.prcp).\
         filter(Measurement.date >= prev_year).all()
@@ -43,41 +47,28 @@ def precipitation():
     
 @app.route("/api/v1.0/stations")
 def stations():
+    results = session.query(Station.station, Station.name).all()
 
-    stations = session.query(Station).all()
-
-    stations_list = []
-    for station in stations:
-        station_dict = {}
-        station_dict["id"] = station.id
-        station_dict["station"] = station.station
-        station_dict["name"] = station.name
-        station_dict["latitude"] = station.latitude
-        station_dict["longitude"] = station.longitude
-        station_dict["elevation"] = station.elevation
-        stations_list.append(station_dict)
-
-    return jsonify(stations_list)
+    station_list = []
+    for result in results:
+        r = {}
+        r["station"]= result[0]
+        r["name"] = result[1]
+        station_list.append(r)
+    
+    return jsonify(station_list)
 
 
 @app.route("/api/v1.0/tobs")
 def tobs():
-    prev_year = dt.date(2017, 8, 23) - dt.timedelta(days=365)
+    results = session.query(Measurement.tobs, Measurement.date).filter(Measurement.date >= query_date).all()
 
-   final_date = session.query(Measurement.date).all().\
-      filter(Measurement.date >= prev_year)
-
-    begin_date = max_date - dt.timedelta(days=365)
-    results = session.query(Measurement).\
-        filter (Measurement.date >= begin_date).all() ##I know this is wrong
-    
     tobs_list = []
     for result in results:
-        tobs_dict = {}
-        tobs_dict["date"] = result.date
-        tobs_dict["station"] = result.station
-        tobs_dict["tobs"] = result.tobs
-        tobs_list.append(tobs_dict)
+        r = {}
+        r["date"] = result[1]
+        r["temprature"] = result[0]
+        tobs_list.append(r)
 
     return jsonify(tobs_list)
 
