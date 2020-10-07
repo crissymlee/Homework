@@ -1,4 +1,5 @@
 import datetime as dt
+from sqlalchemy import create_engine, func
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
@@ -37,10 +38,11 @@ def precipitation():
 
     prev_year = dt.date(2017, 8, 23) - dt.timedelta(days=365)
 
-    session.close()
 
     precipitation = session.query(Measurement.date, Measurement.prcp).\
         filter(Measurement.date >= prev_year).all()
+
+    session.close() 
 
     precip = {date: prcp for date, prcp in precipitation}
     return jsonify(precip)
@@ -61,7 +63,7 @@ def stations():
 
 @app.route("/api/v1.0/tobs")
 def tobs():
-    results = session.query(Measurement.tobs, Measurement.date).filter(Measurement.date >= query_date).all()
+    results = session.query(Measurement.tobs, Measurement.date).filter(Measurement.date >= dt.date(2017, 8, 23)).all()
 
     tobs_list = []
     for result in results:
@@ -71,6 +73,20 @@ def tobs():
         tobs_list.append(r)
 
     return jsonify(tobs_list)
+
+@app.route("/api/v1.0/<start>")
+@app.route("/api/v1.0/<start>/<end>")
+def start_function(start=None, end=None):
+    results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs))
+    
+    start_list = []
+    for result in results:
+        start_list.append(result)
+        start_list.append(start)
+        start_list.append(end)
+    
+    
+    return jsonify(start_list)
 
 
 
