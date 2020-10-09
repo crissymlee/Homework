@@ -47,36 +47,51 @@
        
        
        
-       
+            </head> 
        
     <!-- The body of the page -->
 
-    </head>
     <div class="container">
         <div class="row">
-          <div class="col p-3 mb-0 bg-info text-white">
-            <p>The purpose of this project was to figure out the weather as you got closer to the equator. In order to accomplish this goal we had to use the OpenWeatherMap API. The API allowed us to gather data on 500 cities. </p>
-            
-            <p> we had all of this data we were able to use Matplotlib in Jupyter Notebook to plot various aspects of the weather vs lattitude. Things that we looked at while we were plotting this information includes: temperature, cloudiness,</p> 
-          </div>
-          <div class="col">
-            <img src="https://www.precisionpaincarerehab.com/editor-uploads/website-1004/joint-pain-weather-changes2-1514968856.jpg" height="350px">
-          </div>
-          <div class="row">
-            <ul class="list-group list-group-flush">
-                <li> <a href="file:///C:/Users/Christina/Documents/GitHub/Homework/HTML%20and%20CSS%20Homework/maxtemp.html">
-                    <img src="resources\assets\images\Fig1.png" alt="Max Temperature vs Latitude graph" height="95px"></a></li>
-                <li> <a href="file:///C:/Users/Christina/Documents/GitHub/Homework/HTML%20and%20CSS%20Homework/humidity.html">
-                    <img src="resources\assets\images\Fig2.png" alt="Humdity vs Latitude graph" height="95px"></a></li>
-                <li> <a href="file:///C:/Users/Christina/Documents/GitHub/Homework/HTML%20and%20CSS%20Homework/cloudiness.html">
-                    <img src="resources\assets\images\Fig3.png" alt="Cloudiness vs Latitude graph" height="95px"></a></li>
-                <li> <a href="file:///C:/Users/Christina/Documents/GitHub/Homework/HTML%20and%20CSS%20Homework/windspeed.html">
-                    <img src="resources\assets\images\Fig4.png" alt="Wind Speed vs Latitude graph" height="95px"></a></li>
-              </ul>
-          </div>
+            <div class="box">
+                <blockquote class="blockquote text-center">
+                    <p class="p-3 mb-0 bg-info text-white">Notice below the Comparison of the graphs for the weather as it gets closer to the Equator</p>
+            </blockquote>
+                <hr>
+                <p>Click on any plot to get an in-depth analysis</p>
+                <div class="container" style="padding-bottom: 10px;">
+                    <div class="row">
+                        <div class="col-lg-6" style="padding-bottom: 30px;">
+                            <div class="title">vs. Max Temperature</div>
+                            <a href="temp.html">
+                                <img class="panel" src="Resources/assets/images/Fig1.png" alt="Max Temperature Graph">
+                            </a>
+                        </div>
+                        <div class="col-lg-6" style="padding-bottom: 30px;">
+                            <div class="title">vs. Humidity</div>
+                            <a href="humidity.html">
+                                <img class="panel" src="Resources/assets/images/Fig2.png" alt="Humidity Graph">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6" style="padding-bottom: 30px;">
+                            <div class="title">vs. Cloudiness</div>
+                            <a href="cloudiness.html">
+                                <img class="panel" src="Resources/assets/images/Fig3.png" alt="Cloudiness Graph">
+                            </a>
+                        </div>
+                        <div class="col-lg-6" style="padding-bottom: 30px;">
+                            <div class="title">vs. Wind Speed</div>
+                            <a href="wind_speed.html">
+                                <img class="panel" src="Resources/assets/images/Fig4.png" alt="Wind Speed Graph">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-    </body>
-
+    </div>
+    <footer>Page 6 - Comparison</footer>
+</body>
 </html>
